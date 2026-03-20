@@ -1,0 +1,4 @@
+version: 1
+display_name: Protocol Schema Standards
+short_description: 对外协议字段命名和结构统一规范
+default_prompt: 读取并应用 protocol-schema-standards，审查这次 API/事件/DTO/config 变更是否引入同义不同名、同义不同层级或消费者分支成本。

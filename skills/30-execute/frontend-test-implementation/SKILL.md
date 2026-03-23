@@ -15,6 +15,7 @@ description: 前端组件测试实现，基于 Testing Library 测试用户行�
 ## 前置条件
 
 - `architecture-design` 完成
+- 用户已确认前端测试需求和边界覆盖
 - 可与 `frontend-implementation` 并行
 
 ## Flow
@@ -32,6 +33,8 @@ description: 前端组件测试实现，基于 Testing Library 测试用户行�
 2. 基线失败 → 停止报告
 
 ### Phase 2: 测试用例设计
+
+先核对用户已确认的边界；未确认时先回问，不得自己决定交互异常、空态、错误态、时序态是否要测。
 
 | 组件层 | 测试重点 | 方法 |
 |--------|---------|------|
@@ -89,6 +92,7 @@ description: 前端组件测试实现，基于 Testing Library 测试用户行�
 - 并行：`frontend-implementation`
 - 下游：全量通过 → 合并
 - 异常：基线失败/无框架 → 停止
+- 异常：测试边界未确认 → 先回到 `requirement-analysis`
 
 ## Self-check
 

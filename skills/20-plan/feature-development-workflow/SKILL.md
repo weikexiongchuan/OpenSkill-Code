@@ -15,12 +15,12 @@ description: 需求开发全流程编排：需求分析 → 架构设计 → 并
 Step 1: 需求分析
   └→ L3: requirement-analysis (challenger)
   └→ 产出: workspace/{project}/notes/req-{title}.md
-  └→ 用户确认用户旅程后 → Step 2
+  └→ 用户确认用户旅程 + 边界决策 + 测试需求后 → Step 2
 
 Step 2: 架构设计
   └→ L3: architecture-design (architect)
   └→ 产出: workspace/{project}/notes/design-{title}.md
-  └→ 用户确认方案后 → Step 3
+  └→ 用户确认方案 + 边界实现选择 + 测试覆盖边界后 → Step 3
 
 Step 3: 并行实现（sub-agent 分发）
   ┌─ 后端存在改动？

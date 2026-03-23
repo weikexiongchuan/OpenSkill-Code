@@ -21,7 +21,7 @@ Step 2: 修复设计
   └→ L3: architecture-design (architect, 轻量模式)
   └→ 输入: bug 诊断报告中的根因 + 影响范围
   └→ 产出: 修复方案追加到 bug-{id}.md
-  └→ 用户确认方案后 → Step 3
+  └→ 用户确认方案 + 边界实现选择 + 测试需求后 → Step 3
 
 Step 3: 实现修复 + 回归测试（并行）
   ┌─ L3: code-implementation (implementer) ──┐

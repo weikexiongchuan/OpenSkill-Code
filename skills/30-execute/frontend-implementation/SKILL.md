@@ -15,6 +15,7 @@ description: 前端组件实现，按设计文档逐组件实施，维护组件�
 ## 前置条件
 
 - `architecture-design` 完成，设计文档已确认
+- 设计文档已覆盖页面入口、用户旅程、布局、状态、组件复用、响应式、动效和样式分层
 - 可与 `code-implementation`（后端）、`frontend-test-implementation` 并行
 
 ## Flow
@@ -67,7 +68,8 @@ description: 前端组件实现，按设计文档逐组件实施，维护组件�
 
 1. 构建通过，无 TypeScript 错误
 2. 对照规范自查
-3. 生成总结 `workspace/{project}/notes/impl-frontend-{title}.md`
+3. 检查新增或修改的 CSS 文件，超过 500 行则先拆分
+4. 生成实现文档 `workspace/{project}/notes/impl-frontend-{title}.md`，记录页面结构、组件路径、样式归属、公共层复用和方案偏差
 
 ## Rules
 

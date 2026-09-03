@@ -96,57 +96,10 @@ AI 辅助开发技能集入口。
 
 ## Workspace 约定
 
-workspace 分两层：
-
-- **公共层**：`<openskill-code-root>/workspace/_global/`，存放跨项目复用的回答偏好、通用沟通规范、全局约束索引
-- **项目层**：`<openskill-code-root>/workspace/{project-name}/`，每个项目独立目录，存放该项目专属信息
-
-项目级 workspace：
-- `overview.md` -- 项目概览
-- `progress.md` -- 开发进度
-- `servers/` -- 服务器状态（按 alias 分子目录）
-- `notes/` -- 切面笔记（架构决策、排障记录等）
-
-### 记录原则
-
-- **最少 token**：用关键词和短句，不写完整段落
-- **先压缩再落盘**：先把新增信息压成短句、条目或表格，再决定写入
-- **动态维护**：每次获取到新信息时立即更新对应文件
-- **覆盖式更新**：状态类字段直接覆盖旧值；历史类字段追加
-- **不重复记录**：同一信息只出现在一个文件中
-- **AI 自主判断**：workspace 是动态记忆层，是否写入由 AI 判断，不要求每次任务都落盘
-- **进度默认更新**：大多数任务结束后都应更新进度；只有纯临时讨论、无稳定结论或无实际推进时可不写
-- **纠偏优先落盘**：当用户指出理解错误、回答方式不对、规范不符、风格不合适时，优先把纠偏后的稳定结论写入可复用位置
-- **优先写可复用信息**：高概率复用的偏好、规范、产物格式、项目理解、长期约束要写；临时讨论和一次性上下文不写
-- **写后可索引**：新增记录必须放到后续 skill 能直接读取和复用的位置，避免写成孤立笔记
-- **体量受控**：文件变大时，先压缩，再按主题拆分并更新索引
-
-### 分层与索引
-
-- **公共回答偏好**：写到 `workspace/_global/preferences/`
-- **公共索引**：写到 `workspace/_global/indexes/preferences-index.md`
-- **项目规范与项目理解**：写到 `workspace/{project-name}/notes/`
-- **项目索引**：写到 `workspace/{project-name}/notes/index.md`
-
-读取顺序：
-
-1. 先读公共索引，再按需读命中的公共偏好文件
-2. 再读项目 `progress.md`
-3. 再读项目 `notes/index.md`
-4. 最后按需读具体项目笔记
-
-### 分析复用
-
-| 可复用内容 | 存放位置 | 更新时机 |
-|-----------|---------|---------|
-| 需求/设计/Bug 诊断 | `notes/req-*.md` / `design-*.md` / `bug-*.md` | 变更时修改 |
-| 代码结构分析 | `notes/codebase-{module}.md` | 架构变更时 |
-| 组件索引/项目规范 | `notes/component-registry.md` / `project-standards.md` | 新增/修改时 |
-| 用户纠偏后的稳定理解 | `notes/` 下对应主题文件 | 结论稳定且后续会复用时 |
-| 回答风格/产物偏好（公共） | `workspace/_global/preferences/*.md` | 用户明确指出且跨项目复用时 |
-| 流程约束 | `notes/workflow-standards.md` | 用户明确指出或多次重复时 |
-
-后续先查已有记录，再增量更新。
+- 公共记忆：`workspace/_global/`；项目记忆：`workspace/{project}/`。
+- 读取顺序：公共索引 → `progress.md` → 项目 `notes/index.md` → 命中的具体笔记。
+- 写入前先压缩；状态覆盖、历史追加、同一信息只保存一次，并维护索引。
+- 详细目录和归档规则见 [workspace protocol](docs/workspace-protocol.md)。
 
 ## 人格编码
 

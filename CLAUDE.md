@@ -121,6 +121,7 @@ AI 辅助开发技能集入口。
 |---------|------|
 | 写代码前查对应规范 | [docs/standards-route.md](docs/standards-route.md) |
 | 写设计/实现时统一执行设计意图入码规范 | [docs/architecture-commenting-standards.md](docs/architecture-commenting-standards.md) |
+| 设计或诊断异步任务、队列、调度和状态机 | [docs/stateful-workflow-correctness.md](docs/stateful-workflow-correctness.md) |
 | 查找可用 skill | [docs/skill-index.md](docs/skill-index.md) |
 | 首次使用构建工具 | [docs/tool-discovery.md](docs/tool-discovery.md) |
 

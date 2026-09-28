@@ -5,6 +5,8 @@ description: 数据库设计规范：表/索引/SQL/变更。Use when 设计表�
 
 # Database Design Standards
 
+新增/修改 SQL（含 ORM 实际生成 SQL）的索引设计、预执行与长期性能验收统一按 [SQL 性能验收](../../../docs/sql-performance-validation.md) 执行；本文件只规定具体写法，不以“有索引”代替执行计划和实测。
+
 ## 表设计
 
 **命名**：全小写+下划线，长度<=30，布尔加 `is_`，外键 `被引用表_id`，禁用保留字

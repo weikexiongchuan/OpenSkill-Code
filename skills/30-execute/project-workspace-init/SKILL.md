@@ -29,6 +29,8 @@ description: 初始化项目级 workspace 骨架。Use when 首次跟踪一个�
 workspace/{project-name}/
   overview.md              # 项目概览：定位、技术栈、模块、关键路径
   progress.md              # 开发进度：里程碑、当前任务、阻塞项
+  common/
+    index.md               # 项目内可复用能力索引：代码位置与适用边界
   servers/
     {server-alias}/
       state.md             # 连接信息、登录方式、运行状态
@@ -142,10 +144,20 @@ YYYY-MM-DDTHH:MM:SSZ
 |------|------|------|------------|
 ```
 
+### common/index.md
+
+```markdown
+# Reusable Capabilities
+
+| 能力 | 代码位置 | 适用边界 | 详情 | Last Verified |
+|------|----------|----------|------|---------------|
+```
+
 ## Route
 
 - 首次跟踪新项目时使用此 skill
 - 项目 workspace 已存在时跳过，直接用 `project-state-record-update` 更新
+- 已有项目若缺少 `common/index.md`，由 `project-state-record-update` 补建，无需重建整个 workspace
 - 需要添加服务器时，在已有项目 workspace 的 `servers/` 下新建子目录即可
 
 ## Self-check

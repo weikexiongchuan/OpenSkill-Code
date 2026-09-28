@@ -28,6 +28,7 @@ description: 动态收集用户提到的规范、约定、偏好，归档到对�
 |------|---------|------|
 | 语言级通用 | `skills/10-understand/{lang}-dev-standards/SKILL.md` | "Java 禁止用 Lombok" |
 | 项目级专属 | `workspace/{project}/notes/project-standards.md` | "API 返回统一用 Result 包装" |
+| 项目内可复用能力 | `workspace/{project}/common/index.md` 与命中主题笔记 | "这个查询封装可被多个业务复用，限制在某类索引上" |
 | 组件/UI | `workspace/{project}/notes/component-registry.md` | "按钮一律圆角 8px" |
 | 测试约定 | `skills/10-understand/{lang}-test-standards/SKILL.md` 或项目级 | "Mock 数据放 __fixtures__" |
 | 流程约定 | `workspace/{project}/notes/workflow-standards.md` | "发布前必须跑全量回归" |
@@ -48,12 +49,14 @@ description: 动态收集用户提到的规范、约定、偏好，归档到对�
 
 - **语言级**：追加到对应 SKILL.md 的合适 section
 - **项目级**：追加到 `workspace/{project}/notes/project-standards.md`，不存在则创建
+- **项目内可复用能力**：先核实真实代码和适用边界，再更新 `common/index.md`；未实现的约定仍写 `notes/`，不冒充已验证能力
 - **公共回答偏好**：写到 `workspace/_global/preferences/{topic}.md`
 - **主题纠偏**：写到 `workspace/{project}/notes/{topic}.md`，标题直接体现纠偏后的正确理解
 - 格式：短句，一行一条，与已有风格一致
 - 写入后同步更新索引：
   - 公共偏好 → `workspace/_global/indexes/preferences-index.md`
   - 项目笔记 → `workspace/{project}/notes/index.md`
+  - 项目可复用能力 → `workspace/{project}/common/index.md`
 - 写入后告知：已记录到 {文件路径}
 
 ### Step 4: 通知

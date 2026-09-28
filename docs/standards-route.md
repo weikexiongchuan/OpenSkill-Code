@@ -32,3 +32,5 @@
 ## 条件加读
 
 - 涉及 API / 事件 / 信号 / DTO / 配置等**对外协议或 schema** 时，额外读取 `protocol-schema-standards`
+- 涉及新增/修改 SQL（含 ORM 生成 SQL）时，额外执行 `docs/sql-performance-validation.md`
+- 涉及业务处理日志、错误上报或日志配置时，额外读取 `docs/logging-standards.md`；纯静态展示或无持久化日志的代码库按规范标记不适用

@@ -12,7 +12,7 @@ AI 辅助开发技能集入口。
 | 用户提到规范/约定/偏好（"以后都要..."、"我们的规范是..."） | 自动触发 `standards-organizer` 归档 |
 | 需要理解不熟悉的代码/架构/模块 | 扫描 `skills/10-understand/` 找匹配 skill |
 | 需要多个 skill 协作完成的复杂任务 | 扫描 `skills/20-plan/` 找编排 skill |
-| 用户要求改进 skill 或反馈问题 | 进入 `skills/40-feedback/` |
+| 用户要求改进 skill 或反馈问题 | 检查对应 skill 与入口；稳定规范用 `standards-organizer` 归档 |
 
 ## 开发前确认清单
 
@@ -26,6 +26,7 @@ AI 辅助开发技能集入口。
 
 2. [项目规范] 该项目是否有专属规范？
    └→ 读取 workspace/{project}/notes/project-standards.md（如存在）
+   └→ 读取 workspace/{project}/common/index.md 和命中的可复用能力；旧项目缺失时按 workspace protocol 补建空索引
 
 3. [需求] 需求是否已明确？
    └→ 未明确 → requirement-analysis（challenger 人格追问）
@@ -50,6 +51,8 @@ AI 辅助开发技能集入口。
    └→ 边界决策和测试范围只记录用户已明确要求的内容
    └→ 长任务按 docs/architecture-commenting-standards.md 检查逐阶段失败处理与测试；方案文档的输出结构统一遵守 skills/30-execute/architecture-design/references/design-doc-template.md
    └→ 前端方案必须包含：页面入口、用户旅程、布局、状态、组件复用、响应式、动效、数据接口和样式分层
+   └→ 涉及 SQL 时按 docs/sql-performance-validation.md 设计索引、执行计划和长事务边界
+   └→ 按 docs/logging-standards.md 设计关键节点、稳定标签、错误标签和日志回收
    └→ 已确认 → 继续
 
 7. [代码同步] 是否基于最新代码？
@@ -61,6 +64,12 @@ AI 辅助开发技能集入口。
    └→ 前端：frontend-implementation + frontend-test-implementation
    └→ 纯后端任务不触发前端 skill，反之亦然
    └→ 实现复杂逻辑时，必须把“为什么这样设计”“后续如何扩展”“哪些接口是预留点”写在临近代码的注释里
+
+9. [交付前] 最新代码是否完成验证与独立复核？
+   └→ 涉及 SQL 时完成实际预执行、适用语句的执行计划及长期运行/慢事务评估；DDL 改做隔离库迁移、锁和恢复验证，生产写入另需该次明确授权
+   └→ 验证业务日志关键节点、[error] 检索和产生日志模块的回收机制；不适用项说明原因
+   └→ 实现与测试结束后，用子代理对最新代码独立评估性能、稳定性、现有功能影响；修复后复核最新改动
+   └→ 更新项目 common/index.md 与可复用条目，记录真实复用边界和代码位置
 ```
 
 小任务（明确单文件修改、bug 修复）可跳过 3、5；不能跳过调研可行性门禁。
@@ -88,6 +97,9 @@ AI 辅助开发技能集入口。
 16. **CSS 文件上限**：新增或修改的 CSS 文件原则上不超过 500 行；超过必须按 token/base/layout/component/page 拆分，并记录拆分关系
 17. **上下文节制**：只读取当前任务需要的索引、规范和模块；用引用路径代替重复粘贴，不重复记录同一规则、代码、日志和背景
 18. **禁止多余开关**：开发功能时禁止新增用户未明确要求的配置开关、功能开关或模式开关；确有多种运行方式时，必须先向用户确认
+19. **SQL 验收**：新增/修改 SQL 必须最大化利用索引，按 [SQL 性能验收](docs/sql-performance-validation.md) 预执行并评估长期运行风险；不得把未执行写成已验证
+20. **日志可检索且可回收**：每个产生日志的模块必须有轮转/保留机制，业务关键节点使用稳定标签，错误日志统一带 `[error]`；按 [日志规范](docs/logging-standards.md) 验收
+21. **独立稳定性复核**：代码与测试完成后调用子代理检查最新代码的性能、稳定性和现有功能影响；按 `stability-review` 执行
 
 ## 上下文与项目结构
 
@@ -100,7 +112,7 @@ AI 辅助开发技能集入口。
 ## Workspace 约定
 
 - 公共记忆：`workspace/_global/`；项目记忆：`workspace/{project}/`。
-- 读取顺序：公共索引 → `progress.md` → 项目 `notes/index.md` → 命中的具体笔记。
+- 读取顺序：公共索引 → `progress.md` → 项目 `common/index.md` 与 `notes/index.md` → 命中的具体条目。
 - 写入前先压缩；状态覆盖、历史追加、同一信息只保存一次，并维护索引。
 - 详细目录和归档规则见 [workspace protocol](docs/workspace-protocol.md)。
 
@@ -121,6 +133,8 @@ AI 辅助开发技能集入口。
 | 何时读取 | 文档 |
 |---------|------|
 | 写代码前查对应规范 | [docs/standards-route.md](docs/standards-route.md) |
+| 设计或验收 SQL | [docs/sql-performance-validation.md](docs/sql-performance-validation.md) |
+| 设计或验收模块日志 | [docs/logging-standards.md](docs/logging-standards.md) |
 | 写设计/实现时统一执行设计意图入码规范 | [docs/architecture-commenting-standards.md](docs/architecture-commenting-standards.md) |
 | 设计或诊断异步任务、队列、调度和状态机 | [docs/stateful-workflow-correctness.md](docs/stateful-workflow-correctness.md) |
 | 查找可用 skill | [docs/skill-index.md](docs/skill-index.md) |

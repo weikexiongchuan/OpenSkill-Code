@@ -32,10 +32,15 @@ Step 3: 实现修复 + 回归测试（并行）
 Step 4: 验证
   └→ 复现路径再走一遍，确认 bug 已修复
   └→ 全量测试通过
+  └→ 涉及 SQL 时完成预执行与性能验收；涉及业务日志时核对关键节点、[error] 检索及产生日志模块的回收，不适用项说明原因
 
-Step 5: 记录
+Step 5: 独立稳定性复核
+  └→ L3: stability-review（子代理查看合并后的最新代码）
+  └→ 评估性能、稳定性、现有功能影响；修复后重验并复核最新改动
+
+Step 6: 记录
   └→ L3: project-state-record-update
-  └→ 更新 progress.md
+  └→ 更新 progress.md 与 common/index.md 中已验证的可复用能力
 ```
 
 ## 跳步规则

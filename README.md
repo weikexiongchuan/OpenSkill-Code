@@ -94,5 +94,4 @@ OpenSkill-Code/
     10-understand/   # 规范类
     20-plan/         # 编排类
     30-execute/      # 执行类
-    40-feedback/     # 反馈类
 ```

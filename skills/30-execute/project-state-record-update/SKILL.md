@@ -19,6 +19,7 @@ description: 更新项目 workspace 中的持久化 markdown 记录。Use when �
 - 更新 `servers/{alias}/services/*.md`：服务状态
 - 创建/更新 `notes/*.md`：架构决策、排障记录、经验沉淀
 - 更新 `notes/index.md`：项目笔记索引
+- 创建/更新 `common/index.md` 与主题笔记：项目内已验证的可复用能力及边界
 - 必要时更新 `workspace/_global/indexes/preferences-index.md`
 
 ## Update Rules
@@ -32,6 +33,7 @@ description: 更新项目 workspace 中的持久化 markdown 记录。Use when �
 7. **进度近似必写**：只要任务产生了稳定结论、实际推进或状态变化，通常都应更新 `progress.md`；仅在纯讨论或无有效进展时可跳过。
 8. **先压缩再写**：优先把内容压成短条目、短表格；内容变大时按主题拆分，而不是继续堆在原文件。
 9. **索引同步更新**：新增或拆分笔记后，必须同步更新对应索引文件。
+10. **公共层持续维护**：需求、设计、实现中发现已验证的项目内公共能力时，更新 `common/index.md`；记录真实代码路径、适用/不适用边界和最近验证日期。已有项目缺少该文件时按 `project-workspace-init` 模板补建；失效条目及时修订或删除，不复制源码、临时日志或未核实结论。
 
 ## Typical Inputs
 
@@ -53,3 +55,4 @@ description: 更新项目 workspace 中的持久化 markdown 记录。Use when �
 1. 是否只更新了变化的字段
 2. timeline 是否只做了追加
 3. Updated At 时间戳是否已更新
+4. 可复用能力变化是否已同步 `common/index.md`，且索引指向真实代码

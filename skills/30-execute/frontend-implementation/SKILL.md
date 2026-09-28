@@ -27,12 +27,14 @@ description: 前端组件实现，按设计文档逐组件实施，维护组件�
 3. 读 `css-styling-standards`
 4. 读 `html-accessibility-standards`
 5. 任一缺失 → 停止报告
+6. 涉及前端业务处理、日志或错误上报时读 [日志规范](../../../docs/logging-standards.md)，沿用稳定标签和关联 ID；纯静态展示标记不适用
 
 ### Phase 1: 检索组件索引
 
 1. 读 `workspace/{project}/notes/component-registry.md`
 2. 不存在 → 扫描现有组件目录，生成初始索引
-3. 对照设计文档检查相似组件：
+3. 读项目 `common/index.md` 与命中条目，用实际代码核实跨页面可复用能力
+4. 对照设计文档检查相似组件：
 
 | 检索结果 | 处理 |
 |---------|------|
@@ -70,6 +72,7 @@ description: 前端组件实现，按设计文档逐组件实施，维护组件�
 2. 对照规范自查
 3. 检查新增或修改的 CSS 文件，超过 500 行则先拆分
 4. 生成实现文档 `workspace/{project}/notes/impl-frontend-{title}.md`，记录页面结构、组件路径、样式归属、公共层复用和方案偏差
+5. 更新项目 `common/index.md` 中已验证的跨页面复用能力；已有组件清单只链接 `component-registry.md`，不复制条目。前端与测试合并后交 `stability-review` 子代理复核最新代码
 
 ## Rules
 
@@ -85,7 +88,7 @@ description: 前端组件实现，按设计文档逐组件实施，维护组件�
 
 - 上游：`architecture-design`
 - 并行：`code-implementation`、`frontend-test-implementation`
-- 下游：测试验证
+- 下游：测试验证 → `stability-review`
 - 异常：规范缺失/设计与代码不符 → 停止
 
 ## Self-check

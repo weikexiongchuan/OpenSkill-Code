@@ -35,11 +35,17 @@ Step 3: 并行实现（sub-agent 分发）
 
 Step 4: 全量验证
   └→ 后端测试 + 前端测试全部通过
+  └→ 涉及 SQL 时逐条预执行并评估索引、长期运行和慢事务风险
+  └→ 核对业务关键节点日志、[error] 检索及产生日志模块的回收；不适用项说明原因
   └→ 产出: impl-{title}.md + test-{title}.md
 
-Step 5: 记录
+Step 5: 独立稳定性复核
+  └→ L3: stability-review（子代理查看合并后的最新代码）
+  └→ 评估性能、稳定性、现有功能影响；修复后重验并复核最新改动
+
+Step 6: 记录
   └→ L3: project-state-record-update
-  └→ 更新 progress.md
+  └→ 更新 progress.md 与 common/index.md 中已验证的可复用能力
 ```
 
 ## 跳步规则

@@ -38,11 +38,11 @@
 | `requirement-analysis` | 需求分析：用户旅程视角，反驳式追问 |
 | `architecture-design` | 架构设计：基于最新代码，实现方案 + 测试方案 + 改动风险 |
 | `code-implementation` | 后端代码实现：按设计文档逐文件，规范缺失则停止 |
-| `stability-review` | 代码与测试完成后，由子代理独立评估最新代码的性能、稳定性和现有功能影响 |
+| `stability-review` | 代码与测试完成后，由子代理独立核对范围和改表方案，再评估性能、稳定性及现有功能影响 |
 | `test-implementation` | 后端测试实现：基线验证 → 新增测试 → 全量通过 |
 | `frontend-implementation` | 前端代码实现：组件风格索引 + token 强制 |
 | `frontend-test-implementation` | 前端测试实现：Testing Library + axe-core |
-| `standards-organizer` | 规范整理：捕捉用户提到的规范，归档到对应位置 |
+| `standards-organizer` | 规范整理：按用户约定和项目证据区分规则、事实与候选，逐步维护项目已有约束 |
 | `project-workspace-init` | 项目 workspace 初始化 |
 | `project-state-record-update` | 项目状态记录更新 |
 | `ssh-server-connect` | SSH 连通性管理 |

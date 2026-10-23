@@ -2,6 +2,8 @@
 
 AI 辅助开发技能集入口。
 
+协助 AI 读取现有项目、遵循项目规则，并在实际工作中逐步沉淀和维护项目约束。通用层提供识别、核实与归档的方法；具体平台、业务选择和操作要求保留在项目中，不因某个项目采用就推广为通用要求。
+
 前提：已注册到用户级 `~/.claude/CLAUDE.md`；项目级 `CLAUDE.md` 只补充项目约束。
 
 ## 激活条件
@@ -9,8 +11,8 @@ AI 辅助开发技能集入口。
 | 场景 | 动作 |
 |------|------|
 | 收到代码开发需求（新功能/bug 修复/重构/优化） | 走**开发前确认清单** |
-| 用户提到规范/约定/偏好（"以后都要..."、"我们的规范是..."） | 自动触发 `standards-organizer` 归档 |
-| 需要理解不熟悉的代码/架构/模块 | 扫描 `skills/10-understand/` 找匹配 skill |
+| 用户明确约定、稳定纠偏，或任务中需要沉淀项目约束 | 按 `docs/project-constraint-maintenance.md` 区分规则、事实与候选约束，再由 `standards-organizer` 归档 |
+| 需要理解不熟悉的项目/架构/模块 | 先按 `docs/project-constraint-maintenance.md` 读取适用项目规则与相关证据，再找匹配 skill；纯阅读不自动创建规范文件 |
 | 需要多个 skill 协作完成的复杂任务 | 扫描 `skills/20-plan/` 找编排 skill |
 | 用户要求改进 skill 或反馈问题 | 检查对应 skill 与入口；稳定规范用 `standards-organizer` 归档 |
 
@@ -25,8 +27,9 @@ AI 辅助开发技能集入口。
    └→ 规范不存在 → 停止，先用 standards-organizer 补充
 
 2. [项目规范] 该项目是否有专属规范？
-   └→ 读取 workspace/{project}/notes/project-standards.md（如存在）
-   └→ 读取 workspace/{project}/common/index.md 和命中的可复用能力；旧项目缺失时按 workspace protocol 补建空索引
+   └→ 先读适用的项目/模块 AGENTS.md、CLAUDE.md 及其引用；按 docs/project-constraint-maintenance.md 核实任务相关证据，不将代码现状直接升级为约束
+   └→ 读取项目已有规范和可复用能力索引及命中条目；采用 OpenSkill workspace 时读取其 notes/project-standards.md 与 common/index.md
+   └→ 缺少索引时仅在本次确需记录时沿用现有目录补建，不自动初始化另一套 workspace
 
 3. [需求] 需求是否已明确？
    └→ 未明确 → requirement-analysis（challenger 人格追问）
@@ -51,7 +54,8 @@ AI 辅助开发技能集入口。
    └→ 边界决策和测试范围只记录用户已明确要求的内容
    └→ 长任务按 docs/architecture-commenting-standards.md 检查逐阶段失败处理与测试；方案文档的输出结构统一遵守 skills/30-execute/architecture-design/references/design-doc-template.md
    └→ 前端方案必须包含：页面入口、用户旅程、布局、状态、组件复用、响应式、动效、数据接口和样式分层
-   └→ 涉及 SQL 时按 docs/sql-performance-validation.md 设计索引、执行计划和长事务边界
+   └→ 涉及 SQL 时按 docs/sql-performance-validation.md 逐条复检能否精简并采用更高效的等价路径，再设计索引、执行计划和长事务边界；包含 ORM/工具实际生成 SQL
+   └→ 表结构/索引变更在正式实现前按 docs/change-scope-schema-review.md 交独立子代理审核必要性、免改表替代方案、真实规模与执行影响；范围扩大或新增风险先确认具体方案
    └→ 按 docs/logging-standards.md 设计关键节点、稳定标签、错误标签和日志回收
    └→ 已确认 → 继续
 
@@ -66,9 +70,10 @@ AI 辅助开发技能集入口。
    └→ 实现复杂逻辑时，必须把“为什么这样设计”“后续如何扩展”“哪些接口是预留点”写在临近代码的注释里
 
 9. [交付前] 最新代码是否完成验证与独立复核？
-   └→ 涉及 SQL 时完成实际预执行、适用语句的执行计划及长期运行/慢事务评估；DDL 改做隔离库迁移、锁和恢复验证，生产写入另需该次明确授权
+   └→ 发包/部署按 docs/release-startup-validation.md 覆盖目标实际启用组合，验证真实容器装配及最终制品启动；未通过不得覆盖线上制品或停止旧服务
+   └→ 涉及 SQL 时复检最终 SQL、参数及执行方式是否仍为最简高效等价路径，完成实际预执行、适用语句的执行计划及长期运行/慢事务评估；DDL 改做隔离库迁移、锁和恢复验证，生产写入另需该次明确授权
    └→ 验证业务日志关键节点、[error] 检索和产生日志模块的回收机制；不适用项说明原因
-   └→ 实现与测试结束后，用子代理对最新代码独立评估性能、稳定性、现有功能影响；修复后复核最新改动
+   └→ 实现与测试结束后，用子代理按 docs/change-scope-schema-review.md 独立核对用户原始目标、已确认范围及改表方案，再评估性能、稳定性、现有功能影响；越界或改表方案未确认不能整体通过，修复后复核最新改动
    └→ 更新项目 common/index.md 与可复用条目，记录真实复用边界和代码位置
 ```
 
@@ -111,8 +116,8 @@ AI 辅助开发技能集入口。
 
 ## Workspace 约定
 
-- 公共记忆：`workspace/_global/`；项目记忆：`workspace/{project}/`。
-- 读取顺序：公共索引 → `progress.md` → 项目 `common/index.md` 与 `notes/index.md` → 命中的具体条目。
+- 优先沿用项目已有记录位置；选择 OpenSkill workspace 时，公共记忆为 `workspace/_global/`，项目记忆为 `workspace/{project}/`，不复制仓库已有规则。
+- 在所选记录位置按需读取已有公共索引、`progress.md`、项目 `common/index.md` 与 `notes/index.md` 及命中条目；不存在的文件不因读取而自动创建。
 - 写入前先压缩；状态覆盖、历史追加、同一信息只保存一次，并维护索引。
 - 详细目录和归档规则见 [workspace protocol](docs/workspace-protocol.md)。
 
@@ -133,10 +138,13 @@ AI 辅助开发技能集入口。
 | 何时读取 | 文档 |
 |---------|------|
 | 写代码前查对应规范 | [docs/standards-route.md](docs/standards-route.md) |
+| 理解现有项目、沉淀或维护项目约束 | [docs/project-constraint-maintenance.md](docs/project-constraint-maintenance.md) |
 | 设计或验收 SQL | [docs/sql-performance-validation.md](docs/sql-performance-validation.md) |
+| 子代理审核范围、设计或评审改表方案 | [docs/change-scope-schema-review.md](docs/change-scope-schema-review.md) |
 | 设计或验收模块日志 | [docs/logging-standards.md](docs/logging-standards.md) |
 | 写设计/实现时统一执行设计意图入码规范 | [docs/architecture-commenting-standards.md](docs/architecture-commenting-standards.md) |
 | 设计或诊断异步任务、队列、调度和状态机 | [docs/stateful-workflow-correctness.md](docs/stateful-workflow-correctness.md) |
+| 发包、部署或审核启动与配置装配 | [docs/release-startup-validation.md](docs/release-startup-validation.md) |
 | 查找可用 skill | [docs/skill-index.md](docs/skill-index.md) |
 | 首次使用构建工具 | [docs/tool-discovery.md](docs/tool-discovery.md) |
 

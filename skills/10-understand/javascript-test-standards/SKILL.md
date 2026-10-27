@@ -18,7 +18,7 @@ description: JavaScript/TypeScript 测试规范：Vitest + Testing Library + MSW
 
 | 指标 | 规则 |
 |------|------|
-| 用户行为覆盖 | 100%（按行为，非行覆盖） |
+| 用户行为覆盖 | 按 [最小验证原则](../../../docs/testing-scope.md) 覆盖本次关键交互，不设统一100%门槛 |
 | 快照测试 | 禁止滥用，仅用于序列化输出 |
 | 实现细节 | 禁止测试 useState/内部方法 |
 

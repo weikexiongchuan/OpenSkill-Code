@@ -15,8 +15,8 @@ description: Go 测试规范：标准 testing + testify，表驱动模式。Use 
 
 | 指标 | 规则 |
 |------|------|
-| 业务逻辑覆盖 | >= 80% |
-| race 检测 | 必须 `go test -race` 通过 |
+| 业务逻辑覆盖 | 按 [最小验证原则](../../../docs/testing-scope.md) 选择关键变化，不设统一覆盖率门槛 |
+| race 检测 | 涉及共享状态或并发改动时，对受影响包执行 `go test -race` |
 | 测试隔离 | `t.Parallel()` 时无共享可变状态 |
 
 ## 表驱动测试（标准模式）

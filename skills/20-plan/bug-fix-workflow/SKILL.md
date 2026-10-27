@@ -21,22 +21,22 @@ Step 2: 修复设计
   └→ L3: architecture-design (architect, 轻量模式)
   └→ 输入: bug 诊断报告中的根因 + 影响范围
   └→ 产出: 修复方案追加到 bug-{id}.md
-  └→ 用户确认方案 + 边界实现选择 + 测试需求后 → Step 3
+  └→ 方案及业务边界明确后 → Step 3
 
 Step 3: 实现修复 + 回归测试（并行）
   ┌─ L3: code-implementation (implementer) ──┐
   │  └→ 按修复方案改动                        │ 并行
   └─ L3: test-implementation (tester)       ──┘
-     └→ 基线测试 → 修复验证测试 → 全量回归
+     └→ 选择相关复现/用例 → 修复验证；按 [最小验证原则](../../../docs/testing-scope.md) 决定是否扩测
 
 Step 4: 验证
   └→ 复现路径再走一遍，确认 bug 已修复
-  └→ 全量测试通过
+  └→ 受影响路径验证通过即可；不默认全量
   └→ 涉及 SQL 时完成预执行与性能验收；涉及业务日志时核对关键节点、[error] 检索及产生日志模块的回收，不适用项说明原因
 
 Step 5: 独立稳定性复核
-  └→ L3: stability-review（子代理查看合并后的最新代码）
-  └→ 评估性能、稳定性、现有功能影响；修复后重验并复核最新改动
+  └→ 小修复自查即可；复杂或高风险变更使用 L3: stability-review
+  └→ 只复核相关风险；修复后仅补测/复核变化部分
 
 Step 6: 记录
   └→ L3: project-state-record-update
@@ -57,7 +57,7 @@ Step 6: 记录
 |------|------|
 | Step 1 无法复现 | 追问上下文，不跳到 Step 2 |
 | Step 2 发现影响范围大于预期 | 升级为 feature-development-workflow |
-| Step 3 基线测试失败 | 停止，报告用户 |
+| Step 3 相关验证失败 | 定位并修复；无关既有失败记录，不自动阻断 |
 | Step 4 复现路径仍能触发 bug | 回退 Step 1 重新诊断 |
 
 ## Route

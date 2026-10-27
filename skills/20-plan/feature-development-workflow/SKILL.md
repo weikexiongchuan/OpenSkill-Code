@@ -15,12 +15,12 @@ description: 需求开发全流程编排：需求分析 → 架构设计 → 并
 Step 1: 需求分析
   └→ L3: requirement-analysis (challenger)
   └→ 产出: workspace/{project}/notes/req-{title}.md
-  └→ 用户确认用户旅程 + 边界决策 + 测试需求后 → Step 2
+  └→ 用户旅程与业务边界明确后 → Step 2
 
 Step 2: 架构设计
   └→ L3: architecture-design (architect)
   └→ 产出: workspace/{project}/notes/design-{title}.md
-  └→ 用户确认方案 + 边界实现选择 + 测试覆盖边界后 → Step 3
+  └→ 方案及业务边界明确后 → Step 3
 
 Step 3: 并行实现（sub-agent 分发）
   ┌─ 后端存在改动？
@@ -33,8 +33,8 @@ Step 3: 并行实现（sub-agent 分发）
   │
   └─ 纯后端/纯前端 → 只启动对应的一组
 
-Step 4: 全量验证
-  └→ 后端测试 + 前端测试全部通过
+Step 4: 按影响范围验证（遵守 docs/testing-scope.md，不默认全量）
+  └→ 本次相关的后端/前端验证通过；不涉及的一侧不测
   └→ 涉及 SQL 时逐条预执行并评估索引、长期运行和慢事务风险
   └→ 核对业务关键节点日志、[error] 检索及产生日志模块的回收；不适用项说明原因
   └→ 产出: impl-{title}.md + test-{title}.md
@@ -63,7 +63,7 @@ Step 6: 记录
 | Step 1 中需求有歧义 | 继续追问，不跳到 Step 2 |
 | Step 2 中发现对代码不了解 | 读取项目文档或 10-understand |
 | Step 3 中规范缺失 | 停止，先补充规范 |
-| Step 3 中基线测试失败 | 停止，报告用户 |
+| Step 3 相关验证失败 | 定位修复；无关已知失败记录，不扩大阻断 |
 | Step 3 中设计与代码不符 | 回退 Step 2 修正方案 |
 
 ## Route

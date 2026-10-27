@@ -68,11 +68,11 @@ description: 前端组件实现，按设计文档逐组件实施，维护组件�
 
 ### Phase 5: 构建验证
 
-1. 构建通过，无 TypeScript 错误
+1. 按 [最小验证原则](../../../docs/testing-scope.md) 自行判断是否需要构建或测试；低风险小需求、小调整可仅做差异自查或目视检查，未运行时简述依据
 2. 对照规范自查
 3. 检查新增或修改的 CSS 文件，超过 500 行则先拆分
 4. 生成实现文档 `workspace/{project}/notes/impl-frontend-{title}.md`，记录页面结构、组件路径、样式归属、公共层复用和方案偏差
-5. 更新项目 `common/index.md` 中已验证的跨页面复用能力；已有组件清单只链接 `component-registry.md`，不复制条目。前端与测试合并后交 `stability-review` 子代理复核最新代码
+5. 更新项目 `common/index.md` 中已验证的跨页面复用能力；已有组件清单只链接 `component-registry.md`，不复制条目。低风险小任务自查即可；复杂或高风险变化再交 `stability-review` 复核
 
 ## Rules
 
@@ -88,7 +88,7 @@ description: 前端组件实现，按设计文档逐组件实施，维护组件�
 
 - 上游：`architecture-design`
 - 并行：`code-implementation`、`frontend-test-implementation`
-- 下游：测试验证 → `stability-review`
+- 下游：按风险选择验证及复核；低风险小任务自查后交付
 - 异常：规范缺失/设计与代码不符 → 停止
 
 ## Self-check

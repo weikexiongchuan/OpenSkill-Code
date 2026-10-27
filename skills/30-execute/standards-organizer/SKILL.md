@@ -38,7 +38,7 @@ description: 根据用户明确约定、稳定纠偏和项目证据，整理并�
 | 项目内可复用能力 | `workspace/{project}/common/index.md` 与命中主题笔记 | "这个查询封装可被多个业务复用，限制在某类索引上" |
 | 组件/UI | `workspace/{project}/notes/component-registry.md` | "按钮一律圆角 8px" |
 | 测试约定 | `skills/10-understand/{lang}-test-standards/SKILL.md` 或项目级 | "Mock 数据放 __fixtures__" |
-| 流程约定 | `workspace/{project}/notes/workflow-standards.md` | "发布前必须跑全量回归" |
+| 流程约定 | `workspace/{project}/notes/workflow-standards.md` | "小修复只做相关验证，避免重复全量回归" |
 | 回答/产物偏好（公共） | `workspace/_global/preferences/*.md` | "先给结论，再给证据" |
 | 纠偏后的稳定理解 | `workspace/{project}/notes/` 下主题笔记 | "这两类输出按一套协议处理，不要拆成两套命名" |
 

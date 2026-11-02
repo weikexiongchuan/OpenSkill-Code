@@ -2,8 +2,8 @@
 
 ## 目录
 
-- `workspace/_global/preferences/`：跨项目偏好与通用约束。
-- `workspace/_global/indexes/preferences-index.md`：公共索引。
+- `workspace/_global/preferences/`：本机环境、工具路径和个人习惯；本地使用，不进版本库。
+- `workspace/_global/indexes/preferences-index.md`：个人环境与习惯索引，由个人工作区 AGENTS.md 引用。
 - `workspace/{project}/overview.md`：项目概览。
 - `workspace/{project}/progress.md`：当前进度。
 - `workspace/{project}/common/`：项目可复用能力层（已验证的公共代码、接口、查询、运行约束），不是复制源码。
@@ -25,4 +25,4 @@
 7. 文件变大时按主题拆分并同步索引。
 8. 需求和设计阶段先读项目 `common/index.md` 与命中的主题笔记，核对已有能力、适用边界和真实代码；不能把过期笔记当成事实。
 9. 开发过程中发现可复用能力或复用边界变化时及时更新 `common/`；条目记录用途、代码位置、适用/不适用条件和最近验证日期。无法证实的内容不得写成已验证能力。
-10. `common/` 只存项目内可复用能力；跨项目通用约束进 `_global/` 或通用 skill，单次需求/故障细节留在 `notes/`。同一事实仅保留一处，其余用链接引用。
+10. `common/` 只存项目内可复用能力；项目通用规范和红线进项目 AGENTS.md 及仓库内引用，通用执行方法进技能，个人环境和习惯进 `_global/`，单次细节留原任务记录。同一事实只留一处，其余引用。

@@ -17,7 +17,7 @@ description: 结构化 Bug 诊断：复现 → 缩小范围 → 定位根因 →
 
 ### Phase 1: 收集症状
 
-向用户确认：
+先读适用项目规则，按 [文档交付](../../../docs/document-delivery.md) 核对证据口径；以下只询问尚未提供且影响判断的信息：
 - 什么行为错了（实际 vs 预期）
 - 何时开始（最近改动？一直存在？）
 - 复现条件（必现/偶现/特定输入）
@@ -79,7 +79,7 @@ description: 结构化 Bug 诊断：复现 → 缩小范围 → 定位根因 →
 （代码根因、异常数据处理、重启恢复、部署后工作线程验证）
 ```
 
-保存到 `workspace/{project}/notes/bug-{id}.md`
+沿用项目已有诊断记录位置，选用 OpenSkill workspace 时才保存到 `workspace/{project}/notes/bug-{id}.md`；交付前按文档规范复核
 
 ## Rules
 

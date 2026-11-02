@@ -55,7 +55,7 @@ description: Java 测试编写规范：命名、结构、隔离、覆盖率。Us
 
 ## 集成测试
 
-- 用 Testcontainers 启动真实 DB
+- 需要真实数据库时优先用已获授权的验证资源；本机 Testcontainers 也属于启动数据库，须取得明确授权，不能从开发／测试需求推定
 - 标记 `@Tag("integration")`，独立于单元测试运行
 
 ## Flaky 测试

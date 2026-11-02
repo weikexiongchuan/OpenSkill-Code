@@ -32,7 +32,7 @@ description: 前端组件实现，按设计文档逐组件实施，维护组件�
 ### Phase 1: 检索组件索引
 
 1. 读 `workspace/{project}/notes/component-registry.md`
-2. 不存在 → 扫描现有组件目录，生成初始索引
+2. 不存在 → 在本次相关组件中查复用能力，仅确需持久化时沿用项目位置建索引，不自动扫全仓
 3. 读项目 `common/index.md` 与命中条目，用实际代码核实跨页面可复用能力
 4. 对照设计文档检查相似组件：
 
@@ -71,7 +71,7 @@ description: 前端组件实现，按设计文档逐组件实施，维护组件�
 1. 按 [最小验证原则](../../../docs/testing-scope.md) 自行判断是否需要构建或测试；低风险小需求、小调整可仅做差异自查或目视检查，未运行时简述依据
 2. 对照规范自查
 3. 检查新增或修改的 CSS 文件，超过 500 行则先拆分
-4. 生成实现文档 `workspace/{project}/notes/impl-frontend-{title}.md`，记录页面结构、组件路径、样式归属、公共层复用和方案偏差
+4. 在项目已有记录位置按需记录页面、组件、样式、复用与偏差；选用 OpenSkill workspace 时使用 `workspace/{project}/notes/impl-frontend-{title}.md`，按 [文档交付](../../../docs/document-delivery.md) 复核
 5. 更新项目 `common/index.md` 中已验证的跨页面复用能力；已有组件清单只链接 `component-registry.md`，不复制条目。低风险小任务自查即可；复杂或高风险变化再交 `stability-review` 复核
 
 ## Rules

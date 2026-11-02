@@ -42,7 +42,7 @@
 | `test-implementation` | 后端测试实现：按风险选择相关验证，复用有效结果，不默认全量 |
 | `frontend-implementation` | 前端代码实现：组件风格索引 + token 强制 |
 | `frontend-test-implementation` | 前端测试实现：Testing Library + axe-core |
-| `standards-organizer` | 规范整理：按用户约定和项目证据区分规则、事实与候选，逐步维护项目已有约束 |
+| `standards-organizer` | 分类维护个人环境／习惯／索引与项目规范／红线，同步核对安装模板、入口及相关技能 |
 | `project-workspace-init` | 项目 workspace 初始化 |
 | `project-state-record-update` | 项目状态记录更新 |
 | `ssh-server-connect` | SSH 连通性管理 |

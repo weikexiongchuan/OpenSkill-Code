@@ -8,7 +8,7 @@
 
 无论什么语言、什么角色，写设计和实现前都先读：
 
-- `docs/architecture-commenting-standards.md`：复杂实现写清设计意图、扩展点、接口预留和结构约束
+- `docs/architecture-commenting-standards.md`：复杂实现解释实际原因与边界，仅说明已有或已确认的扩展点
 
 | 语言 | 角色 | 必读 skill |
 |------|------|-----------|

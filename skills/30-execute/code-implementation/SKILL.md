@@ -18,7 +18,7 @@ description: 精确执行型开发者按架构设计文档逐文件实施代码�
 
 ## 前置条件
 
-- `architecture-design` 完成，设计文档在 `workspace/{project}/notes/design-*.md`
+- 方案已确认，优先读项目已有设计；选用 OpenSkill workspace 时才使用 `workspace/{project}/notes/design-*.md`
 - 用户已确认方案
 - 业务边界已明确；测试是否执行及范围由代理按风险判断，遵守用户指定的验收要求
 - 涉及表结构/索引变更时，已完成 [变更范围与改表方案审核](../../../docs/change-scope-schema-review.md) 的独立方案审核及适用的用户确认；实施中新增改表需求先回方案阶段，不能自行扩大范围
@@ -41,7 +41,7 @@ description: 精确执行型开发者按架构设计文档逐文件实施代码�
 3. 提取用户已确认的边界决策和测试需求
 4. 尚有会改变业务结果的未明确边界 → 只澄清受影响部分；常规测试策略不作为确认门槛
 5. 确认实现范围，排除测试部分
-6. 读项目 `common/index.md` 和命中的能力，按实际代码核实后复用；旧项目缺失时按 `project-workspace-init` 模板补建空索引
+6. 读项目已有能力索引和命中条目，用实际代码核实后复用；仅确需持久化且无既定位置时补建，不自动建空索引
 
 ### Phase 2: 读取现有代码
 
@@ -78,7 +78,7 @@ description: 精确执行型开发者按架构设计文档逐文件实施代码�
 ### Phase 5: 自审与输出
 
 1. 对照规范自查（见 Self-check）
-2. 生成总结到 `workspace/{project}/notes/impl-{title}.md`，包含 SQL 与日志验证事实或阻塞
+2. 按需在已有记录位置总结适用 SQL／日志验证事实与阻塞；选用 OpenSkill workspace 时使用 `workspace/{project}/notes/impl-{title}.md`，文档按 [交付规范](../../../docs/document-delivery.md) 复核
 3. 小修复自查即可；复杂/高风险改动按 `stability-review` 独立复核，修复后只补相关验证及复核
 
 ## Rules

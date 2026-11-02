@@ -16,7 +16,7 @@ description: 严谨型架构师根据已确认需求设计实现和测试方案�
 
 ## 前置条件
 
-- `requirement-analysis` 已完成，需求文档在 `workspace/{project}/notes/req-*.md`
+- 需求已明确，优先读项目已有需求记录；选用 OpenSkill workspace 时才使用 `workspace/{project}/notes/req-*.md`
 - 用户旅程已确认
 
 ## Flow
@@ -29,9 +29,9 @@ description: 严谨型架构师根据已确认需求设计实现和测试方案�
 
 ### Phase 1: 架构分析
 
-1. 读 `workspace/{project}/overview.md` 了解全貌
-2. 读 `workspace/{project}/common/index.md` 与命中条目，并用代码核实可复用能力、边界和失效情况；缺失则补建索引
-3. 读涉及模块的 CLAUDE.md 和关键代码
+1. 读项目已有概览；选用 OpenSkill workspace 时才使用其 overview.md
+2. 读已有能力索引及命中条目，用代码核实边界；仅确需持久化时补建，不因读取自动创建
+3. 读适用工作区、项目／模块的 AGENTS.md、CLAUDE.md 和关键代码
 4. 判定需求类型：
 
 | 类型 | 判定 | 策略 |
@@ -75,12 +75,13 @@ description: 严谨型架构师根据已确认需求设计实现和测试方案�
 
 生成方案文档，模板见 `references/design-doc-template.md`
 
-- 接口变更时的参数表写法见 `references/test-parameter-template.md`
+- 输出前按 [文档交付](../../../docs/document-delivery.md) 复核；简单修改自查，复杂或高风险方案独立复核一次
+- 测试参数留执行记录，写法见 `references/test-parameter-template.md`
 - 验收检查点写法见 `references/acceptance-checkpoints.md`
 
 ### Phase 5: 确认与分发
 
-- 保存到 `workspace/{project}/notes/design-{kebab-case}.md`
+- 沿用项目已有方案目录；仅选用 OpenSkill workspace 时保存到 `workspace/{project}/notes/design-{kebab-case}.md`
 - 呈现给用户确认
 - 确认后：实现部分 → 开发执行；测试部分 → 测试执行
 
